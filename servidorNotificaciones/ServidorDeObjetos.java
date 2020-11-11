@@ -6,8 +6,7 @@
 package servidorNotificaciones;
 
 import java.rmi.RemoteException;
-import servidorNotificaciones.utilidades.UtilidadesConsola;
-import servidorNotificaciones.utilidades.UtilidadesRegistroS;
+import servidorNotificaciones.utilidades.*;
 import servidorNotificaciones.sop_rmi.NotificacionImpl;
 /**
  *
@@ -15,7 +14,8 @@ import servidorNotificaciones.sop_rmi.NotificacionImpl;
  */
 public class ServidorDeObjetos {
     public static void main(String[] args) throws RemoteException{
-        
+        NotificacionImpl objRemoto = new NotificacionImpl();
+        /*
         int numPuertoRMIRegistry = 0;
         String direccionIpRMIRegistry = "";
                        
@@ -27,11 +27,12 @@ public class ServidorDeObjetos {
         NotificacionImpl objRemoto = new NotificacionImpl();
         
         try {
+            UtilidadesRMIServidor.ArrancarNS(numPuertoRMIRegistry);
             UtilidadesRegistroS.RegistrarObjetoRemoto(objRemoto, direccionIpRMIRegistry, numPuertoRMIRegistry, "ObjetoRemotoNotificaciones");
         } catch (Exception e) {
             System.err.println("No fue posible Arrancar el NS o Registrar el objeto remoto" +  e.getMessage());
         }
-
+*/
     }
     
 }

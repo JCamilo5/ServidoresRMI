@@ -8,6 +8,7 @@ package servidorNotificaciones.sop_rmi;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import servidorNotificaciones.dto.PedidoDTO;
+import servidorNotificaciones.vista.GUINotificaciones;
 
 /**
  *
@@ -16,24 +17,37 @@ import servidorNotificaciones.dto.PedidoDTO;
 
 public class NotificacionImpl extends UnicastRemoteObject implements NotificacionInt {
 
+    GUINotificaciones vista;
+
     public NotificacionImpl() throws RemoteException {
         super();
+        vista = new GUINotificaciones(this);
+        
     }
 
     @Override
     public void notificarRegistro(PedidoDTO objNotificacion) throws RemoteException {
+        int numMesa = 0;
+        int numHamburguesa = 0;
+        String tipo = "";
+        int cantiIngreExtra=0;
         System.out.println("invocando al método notificar registro");
-        System.out.println("No Mesa: "+objNotificacion.getNumMesa());
+        numMesa = objNotificacion.getNumMesa();
         for (int i = 0; i < objNotificacion.getListaHamburguesas().size(); i++) {
-            System.out.println("\nHamburguesa no: " + i);
-            if (objNotificacion.getListaHamburguesas().get(i).getTipo() == 'p') {
-                System.out.println("Tipo: Pequeña");
-            } else if (objNotificacion.getListaHamburguesas().get(i).getTipo() == 'm') {
-                System.out.println("Tipo: Mediana");
-            } else {
-                System.out.println("Tipo: Grande");
+            numHamburguesa = i;
+            switch (objNotificacion.getListaHamburguesas().get(i).getTipo()) {
+                case 'p':
+                    tipo = "pequeña";
+                    break;
+                case 'm':
+                    tipo = "mediana";
+                    break;
+                default:
+                    tipo="grande";
+                    break;
             }
-            System.out.println("Cantidad de ingredientes extra: " + objNotificacion.getListaHamburguesas().get(i).getCantidadIngredientesExtra());
+           cantiIngreExtra= objNotificacion.getListaHamburguesas().get(i).getCantidadIngredientesExtra();
+           vista.agrgarFila(numMesa, numHamburguesa+1, tipo, cantiIngreExtra);
         }
     }
 
