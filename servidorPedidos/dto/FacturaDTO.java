@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 package servidorPedidos.dto;
-
+import java.io.Serializable;
 /**
  *
  * @author ACER
  */
-public class FacturaDTO {
+public class FacturaDTO implements Serializable{
 
     
     private int canPeq;
