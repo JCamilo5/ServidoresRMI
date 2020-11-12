@@ -51,7 +51,9 @@ public class GestionPedidosImpl extends UnicastRemoteObject implements GestionPe
         }
         objNotificacion.setNumMesa(objPedido.getNumMesa());
         this.objReferenciaRemotaNotificacion.notificarRegistro(objNotificacion);
-        objReferenciaAdminNotificacion.mostrarNotificacion(facturaDao.crearFactura(objPedido));
+        if(objReferenciaAdminNotificacion != null){
+          objReferenciaAdminNotificacion.mostrarNotificacion(facturaDao.crearFactura(objPedido));  
+        }
         return facturaDao.crearFactura(objPedido);
     }
 
