@@ -25,17 +25,11 @@ import servidorPedidos.dto.PedidoDTO;
  */
 public class FacturaDAO {
 
-    private final String ruta = "./facturas";
+    private final String ruta = "./src/servidorPedidos/facturas";
     private int idFactura;
     private FacturaDTO factura;
 
     public FacturaDAO() {
-        File carpeta = new File(ruta);
-        idFactura = carpeta.list().length;
-    }
-
-    public FacturaDTO crearFactura(PedidoDTO objPedido) {
-        factura = new FacturaDTO();
         File directorio = new File(ruta);
         if (!directorio.exists()) {
             if (directorio.mkdirs()) {
@@ -44,6 +38,13 @@ public class FacturaDAO {
                 System.out.println("El directorio ya estaba creado");
             }
         }
+        
+        idFactura = directorio.list().length;
+    }
+
+    public FacturaDTO crearFactura(PedidoDTO objPedido) {
+        factura = new FacturaDTO();
+        
         try {
             String rutaF = ruta + "/factura" + idFactura + ".txt";
             String contenido = cantiHamburguesas(objPedido) + "\n" + calCostoSinIva(objPedido) + "\n" + calcularIva(objPedido) + "\n" + calCostoSinIva(objPedido) + calcularIva(objPedido);
