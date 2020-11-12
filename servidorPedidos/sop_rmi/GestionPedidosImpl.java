@@ -68,12 +68,14 @@ public class GestionPedidosImpl extends UnicastRemoteObject implements GestionPe
 
     @Override
     public boolean registrarCliente(AdministradorNotificacionInt admin) throws RemoteException {
+        System.out.println("Invocando al metodo registrar Administrador");
         this.objReferenciaAdminNotificacion = admin;
         return true;
     }
 
     @Override
     public ArrayList<FacturaDTO> consultarFacturas() throws RemoteException {
+        System.out.println("Invocando al metodo consultar Facturas");
         return facturaDao.consultarFacturas();
     }
     
