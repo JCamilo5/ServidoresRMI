@@ -14,7 +14,7 @@ import servidorPedidos.dto.InfoEmpresaDTO;
  * @author ACER
  */
 public class InfoEmpresaDAO {
-    private final String ruta="./infoEmp";
+    private final String ruta="./src/servidorPedidos/infoEmp";
 
     public InfoEmpresaDAO() {
     }
@@ -28,14 +28,14 @@ public class InfoEmpresaDAO {
         String cadena;
         try{
         //Leo la info de la empresa
-        FileReader f = new FileReader("./infoEmp/datosEmpresa.txt");
+        FileReader f = new FileReader(ruta+"/datosEmpresa.txt");
         BufferedReader b = new BufferedReader(f);
         while ((cadena = b.readLine()) != null) {
             datos.add(cadena);
         }
         b.close();
         //Leo la info de las hamburguesas
-        f = new FileReader("./infoEmp/datosHamburguesa.txt");
+        f = new FileReader(ruta+"/datosHamburguesa.txt");
         b = new BufferedReader(f);
         while ((cadena = b.readLine()) != null) {
             datos.add(cadena);
